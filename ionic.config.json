@@ -1,0 +1,7 @@
+{
+  "name": "frontend-challenge-ewerton-ricardo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
