@@ -27,6 +27,8 @@ ion-toolbar {
     --padding-start: 0;
     --border-color: #DADADA;
     --background: transparent;
+
+    --highlight-color-focused: var(--ion-color-default);
 }
 
 .form-container ion-item ion-label {
@@ -38,8 +40,19 @@ ion-toolbar {
     color: #c6cbd4;
 }
 
+.form-container ion-item ion-input {
+    color: #7a7878;
+}
+
 .form-container ion-button {
     margin-top: 48px;
 
-    --background: var(--ion-color-default)
+    --background: var(--ion-color-default);
+    height: 45px;
+}
+
+.error-message {
+    font-size: 13px;
+    color: var(--ion-color-danger);
+    margin-top: 5px;  
 }

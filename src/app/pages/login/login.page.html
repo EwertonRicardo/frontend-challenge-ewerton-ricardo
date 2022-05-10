@@ -5,17 +5,39 @@
     <ion-img src="../../../assets/imgs/travel-plans.svg"></ion-img>
     
     <form [formGroup]="loginForm" class="form-container">
+
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
         <ion-input formControlName="email"></ion-input>
       </ion-item>
+      <div *ngIf="email.hasError('required') && (email.dirty || email.touched)" class="error-message">
+        Enter your Email adress
+      </div>
+      <div *ngIf="email.hasError('pattern') && (email.dirty || email.touched)" class="error-message">
+        Email entered is incorrect
+      </div>
+
       <ion-item>
         <ion-label position="stacked">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
         <ion-icon name="eye" slot="end"></ion-icon>
       </ion-item>
+      <div *ngIf="password.hasError('required') && (password.dirty || password.touched)" class="error-message">
+        Enter your password
+      </div>
+      <div *ngIf="password.hasError('minlength') && (password.dirty || password.touched)" class="error-message">
+        Minimum of 6 characters
+      </div>
 
-      <ion-button expand="block" class="main-button">Log in</ion-button>
+      <ion-button expand="block" class="main-button" (click)="login()" [disabled]="loginForm.invalid">
+        <ng-container *ngIf="(loading$ | async).show;else loginText" >
+          <ion-spinner name="crescent" ></ion-spinner> 
+        </ng-container>
+        <ng-template #loginText>
+          <span >Log in</span>
+        </ng-template>
+      </ion-button>
+      
     </form>
   </div>
 </ion-content>
