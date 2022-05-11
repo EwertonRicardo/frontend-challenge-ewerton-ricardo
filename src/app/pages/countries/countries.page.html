@@ -1,16 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>countries</ion-title>
+    <ion-title>Countries</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-virtual-scroll [items]="countries">
-    <ion-item button *virtualItem="let country">
+    <ion-item button *virtualItem="let country" [routerLink]="['/country-detail', country.code]">
       <ion-label>
         {{ country.name }}
-
         <p>{{ country.code }}</p>
       </ion-label>
     </ion-item>

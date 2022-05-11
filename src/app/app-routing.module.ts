@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/countries/countries.module').then( m => m.CountriesPageModule)
   },
   {
-    path: 'country-detail',
+    path: 'country-detail/:id',
     loadChildren: () => import('./pages/country-detail/country-detail.module').then( m => m.CountryDetailPageModule)
   },
 ];
