@@ -1,3 +1,4 @@
+import { ToastService } from './../../services/toast/toast.service';
 import { Countries } from './../models/countries.model';
 import { Observable, Subscription } from 'rxjs';
 import { CountryService } from './../../services/country/country.service';
@@ -13,7 +14,7 @@ export class CountriesPage implements OnInit, OnDestroy {
   countries: Countries[];
   subscription = new Subscription();
 
-  constructor( private _contryService: CountryService ) { }
+  constructor( private _contryService: CountryService, private _toastService: ToastService ) { }
 
   ngOnInit() {
     this._getCountriesList();
@@ -30,8 +31,9 @@ export class CountriesPage implements OnInit, OnDestroy {
           this.countries = res;
         },
         (err) => {
-          console.log('Show the error', err)
-        }
+          this._toastService.showToast(err);
+        },
+
       )
     )
   }
