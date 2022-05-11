@@ -7,7 +7,7 @@
 <ion-content>
 
   <ion-virtual-scroll [items]="countries">
-    <ion-item button *virtualItem="let country" [routerLink]="['/country-detail', country.code]">
+    <ion-item button detail *virtualItem="let country" [routerLink]="['/country-detail', country.code]">
       <ion-label>
         {{ country.name }}
         <p>{{ country.code }}</p>
