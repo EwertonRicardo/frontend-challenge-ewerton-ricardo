@@ -1,10 +1,10 @@
-import { Observable, throwError } from 'rxjs';
+import { Observable, Observer, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, take } from 'rxjs/operators';
 
 import { environment as ENV}  from '../../../environments/environment';
-import { Countries } from 'src/app/pages/models/countries.model';
+import { Countries, CountryDetail } from 'src/app/pages/models/countries.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,21 @@ export class CountryService {
     )
   }
 
+  public getCountryDetail(country_code: string): Observable<CountryDetail[]> {
+    const headers = this._mountHeader();
+
+    const year = String(new Date().getFullYear());
+
+    const body = {
+      country_code,
+      year 
+    }
+    return this._http.post(`${this.BASE_URL}/List`, { ...body }, { headers }).pipe(
+      map((response: {holidays: CountryDetail[]}) => response.holidays),
+      take(1),
+      catchError((err: HttpErrorResponse) => throwError(err))
+    )
+  }
 
   private _mountHeader(): HttpHeaders {
     const headers = new HttpHeaders()
