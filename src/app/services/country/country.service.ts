@@ -17,7 +17,7 @@ export class CountryService {
   public getCountries(): Observable<Countries[]> {
     const headers = this._mountHeader();
 
-    return this._http.get(`${this.BASE_URL}/Countries`, { headers }).pipe(
+    return this._http.post(`${this.BASE_URL}/Countries`,{}, { headers }).pipe(
       map((response: {countries: Countries[]}) => response.countries),
       take(1),
       catchError((err: HttpErrorResponse) => throwError(err))
