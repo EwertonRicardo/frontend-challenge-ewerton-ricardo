@@ -1,9 +1,19 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>countries</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-virtual-scroll [items]="countries">
+    <ion-item button *virtualItem="let country">
+      <ion-label>
+        {{ country.name }}
+
+        <p>{{ country.code }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-virtual-scroll>
 
 </ion-content>

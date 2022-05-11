@@ -1,3 +1,6 @@
+import { Countries } from './../models/countries.model';
+import { Observable } from 'rxjs';
+import { CountryService } from './../../services/country/country.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountriesPage implements OnInit {
 
-  constructor() { }
+  countries: Countries[]
+  constructor(
+    private _contryService: CountryService
+  ) { }
 
   ngOnInit() {
+    this._getCountriesList();
+  }
+
+  private _getCountriesList(): void {
+    this._contryService.getCountries().subscribe(
+      (res) => {
+        this.countries = res;
+      },
+      (err) => {
+        console.log('Show the error', err)
+      }
+    )
   }
 
 }
