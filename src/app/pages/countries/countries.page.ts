@@ -1,33 +1,40 @@
 import { Countries } from './../models/countries.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CountryService } from './../../services/country/country.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-countries',
   templateUrl: './countries.page.html',
   styleUrls: ['./countries.page.scss'],
 })
-export class CountriesPage implements OnInit {
+export class CountriesPage implements OnInit, OnDestroy {
 
-  countries: Countries[]
-  constructor(
-    private _contryService: CountryService
-  ) { }
+  countries: Countries[];
+  subscription = new Subscription();
+
+  constructor( private _contryService: CountryService ) { }
 
   ngOnInit() {
     this._getCountriesList();
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   private _getCountriesList(): void {
-    this._contryService.getCountries().subscribe(
-      (res) => {
-        this.countries = res;
-      },
-      (err) => {
-        console.log('Show the error', err)
-      }
+    this.subscription.add(
+      this._contryService.getCountries().subscribe(
+        (res) => {
+          this.countries = res;
+        },
+        (err) => {
+          console.log('Show the error', err)
+        }
+      )
     )
   }
+  
 
 }
