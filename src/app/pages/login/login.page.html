@@ -30,12 +30,7 @@
       </div>
 
       <ion-button expand="block" class="main-button" (click)="login()" [disabled]="loginForm.invalid">
-        <ng-container *ngIf="(loading$ | async).show;else loginText" >
-          <ion-spinner name="crescent" ></ion-spinner> 
-        </ng-container>
-        <ng-template #loginText>
-          <span >Log in</span>
-        </ng-template>
+        LOG IN
       </ion-button>
       
     </form>

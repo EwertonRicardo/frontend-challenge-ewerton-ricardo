@@ -15,7 +15,6 @@ import { Observable } from 'rxjs';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
-  loading$: Observable<LoadingState>;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -25,7 +24,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this._createForm()
-    this.loading$ = this._store.select('loading')
   }
 
   private _createForm(): void {

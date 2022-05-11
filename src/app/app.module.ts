@@ -1,3 +1,4 @@
+import { LoadingComponent } from './components/loading/loading.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -11,7 +12,7 @@ import { AppStoreModule } from './store/AppStoreModule';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoadingComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
