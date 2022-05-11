@@ -2,7 +2,7 @@ import { showLoading, hideLoading } from './../../store/loading/loading.actions'
 import { AppState } from './../../store/AppState';
 import { Store } from '@ngrx/store';
 import { ToastService } from './../../services/toast/toast.service';
-import { CountryDetail } from './../models/countries.model';
+import { CountryHoliday } from './../models/countries.model';
 import { CountryService } from './../../services/country/country.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CountryDetailPage implements OnInit, OnDestroy {
 
   subscription = new Subscription();
-  country: CountryDetail[];
+  countryHolidays: CountryHoliday[];
 
   countryId: string = '';
 
@@ -45,7 +45,7 @@ export class CountryDetailPage implements OnInit, OnDestroy {
     this.subscription.add(
       this._contryService.getCountryDetail(this.countryId).subscribe(
         (res) => {
-          this.country = res;
+          this.countryHolidays = res;
           console.log(res)
         },
         (err) => {

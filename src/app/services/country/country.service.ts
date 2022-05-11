@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, take } from 'rxjs/operators';
 
 import { environment as ENV}  from '../../../environments/environment';
-import { Countries, CountryDetail } from 'src/app/pages/models/countries.model';
+import { Countries, CountryHoliday } from 'src/app/pages/models/countries.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class CountryService {
     )
   }
 
-  public getCountryDetail(country_code: string): Observable<CountryDetail[]> {
+  public getCountryDetail(country_code: string): Observable<CountryHoliday[]> {
     const headers = this._mountHeader();
 
     const year = String(new Date().getFullYear());
@@ -33,8 +33,9 @@ export class CountryService {
       country_code,
       year 
     }
+
     return this._http.post(`${this.BASE_URL}/List`, { ...body }, { headers }).pipe(
-      map((response: {holidays: CountryDetail[]}) => response.holidays),
+      map((response: {holidays: CountryHoliday[]}) => response.holidays),
       take(1),
       catchError((err: HttpErrorResponse) => throwError(err))
     )

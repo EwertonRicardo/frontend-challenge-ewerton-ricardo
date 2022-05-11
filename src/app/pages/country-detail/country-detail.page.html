@@ -8,4 +8,14 @@
 
 <ion-content>
 
+  <ion-virtual-scroll [items]="countryHolidays">
+    <ion-item  *virtualItem="let holiday">
+      <ion-label>
+       <h3> {{ holiday.name }}</h3>
+       <p>Local name: {{ holiday.local_name}}</p>
+      </ion-label>
+      <ion-badge slot="end" mode="ios" >{{holiday.date | date:'MMM d, y'}}</ion-badge>
+    </ion-item>
+  </ion-virtual-scroll>
+
 </ion-content>

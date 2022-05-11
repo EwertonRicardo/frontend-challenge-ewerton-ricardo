@@ -3,7 +3,7 @@ export interface Countries {
     name: string,
 }
 
-export interface CountryDetail {
+export interface CountryHoliday {
 
     date: string,
     name: string,
