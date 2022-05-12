@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
+  showPassord: boolean = false
 
   constructor(
     private _formBuilder: FormBuilder,

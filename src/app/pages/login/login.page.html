@@ -19,8 +19,8 @@
 
       <ion-item>
         <ion-label position="stacked">Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-        <ion-icon name="eye" slot="end"></ion-icon>
+        <ion-input [type]="showPassord ? 'text' : 'password'" formControlName="password"></ion-input>
+        <ion-icon [name]="showPassord ? 'eye': 'eye-off'" slot="end" (click)="showPassord = !showPassord"></ion-icon>
       </ion-item>
       <div *ngIf="password.hasError('required') && (password.dirty || password.touched)" class="error-message">
         Enter your password
