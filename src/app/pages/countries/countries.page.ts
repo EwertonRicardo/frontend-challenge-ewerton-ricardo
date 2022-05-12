@@ -37,11 +37,10 @@ export class CountriesPage implements OnInit, OnDestroy {
         },
         (err) => {
           this._toastService.showToast(err);
-        },
-        () => {
-          this._store.dispatch(hideLoading())
         }
-      )
+      ).add(() => {
+        this._store.dispatch(hideLoading())
+      })
     )
   }
   

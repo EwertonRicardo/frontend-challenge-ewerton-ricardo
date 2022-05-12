@@ -20,7 +20,7 @@ export class CountryService {
     return this._http.post(`${this.BASE_URL}/Countries`,{}, { headers }).pipe(
       map((response: {countries: Countries[]}) => response.countries),
       take(1),
-      catchError((err: HttpErrorResponse) => throwError(err))
+      catchError((err: HttpErrorResponse) => throwError('Ocorreu um erro, tente novamente mais tarde!'))
     )
   }
 
@@ -37,7 +37,7 @@ export class CountryService {
     return this._http.post(`${this.BASE_URL}/List`, { ...body }, { headers }).pipe(
       map((response: {holidays: CountryHoliday[]}) => response.holidays),
       take(1),
-      catchError((err: HttpErrorResponse) => throwError(err))
+      catchError((err: HttpErrorResponse) => throwError('Ocorreu um erro, tente novamente mais tarde!'))
     )
   }
 

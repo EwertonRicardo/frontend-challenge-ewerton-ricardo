@@ -46,15 +46,13 @@ export class CountryDetailPage implements OnInit, OnDestroy {
       this._contryService.getCountryDetail(this.countryId).subscribe(
         (res) => {
           this.countryHolidays = res;
-          console.log(res)
         },
         (err) => {
           this._toastService.showToast(err);
-        },
-        () => {
-          this._store.dispatch(hideLoading());
         }
-      )
+      ).add(() => {
+        this._store.dispatch(hideLoading());
+      })
     )
   }
 
